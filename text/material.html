@@ -106,7 +106,7 @@
         }
     }
 
-    .decked-out-wrapper:has(input:focus) {
+    .decked-out-wrapper:has(input:focus, input:not(:placeholder-shown)) {
         legend {
             opacity: 1;
             transform: translateY(0);
