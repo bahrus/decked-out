@@ -74,7 +74,7 @@
             padding: var(--input-padding);
             height: var(--input-height);
             border: none;
-            border-bottom: 2px solid var(--input-underline-color);
+            
             background: transparent;
             color: var(--text-primary);
             font-size: 1rem;
@@ -92,6 +92,8 @@
             align-items: center;
             width: 100%;
             position: relative;
+            border-bottom: 2px solid var(--input-underline-color);
+            transition: border-color var(--transition-duration) var(--transition-timing);
         }
         
         span {
@@ -117,17 +119,23 @@
             font-weight: var(--font-weight-medium);
         }
 
+        label {
+            padding: none;
+        }
+
         label > span {
             opacity: 0;
             transform: translateY(calc(-1 * var(--translate-length)));
             max-width: 0px;
             visibility: hidden;
+            margin: 0;
         }
 
         input {
             border-bottom-color: var(--input-underline-color-focus);
             background-color: var(--input-background-focus);
             background-color: rgba(25, 118, 210, 0.04);
+            /* border-bottom: 2px solid var(--input-underline-color); */
         }
     }
 
