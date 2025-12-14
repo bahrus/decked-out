@@ -48,14 +48,14 @@
             }
         }
     }
-    .decked-out-wrapper:has(select:focus){
-        & legend {
+    .decked-out-wrapper:has(input:focus){
+        legend {
             opacity: 1;
             transform: translateY(0);
             width: auto;
             padding-inline: var(--legend-padding);
         }
-        & label>span {
+        label>span {
             opacity: 0;
             transform: translateY(calc(-1 * var(--translate-length))); /* move up and fade out */
             max-width: 0px;
