@@ -18,8 +18,22 @@
             --divider-color: rgba(255, 255, 255, 0.12);
             --background-color: #121212;
             --surface-color: #1e1e1e;
+            
         }
 
+    }
+
+    /* Light mode styles and common styles */
+    @media (prefers-color-scheme: light) {
+        .decked-out-wrapper {
+            /* Neutral Colors */
+            --text-primary: rgba(0, 0, 0, 0.87);
+            --text-secondary: rgba(0, 0, 0, 0.60);
+            --text-disabled: rgba(0, 0, 0, 0.38);
+            --divider-color: rgba(0, 0, 0, 0.12);
+            --background-color: #ffffff;
+            --surface-color: #fafafa;
+        }
     }
     .decked-out-wrapper {
         display: inline-block;
@@ -35,13 +49,7 @@
 
 
         
-        /* Neutral Colors */
-        --text-primary: rgba(0, 0, 0, 0.87);
-        --text-secondary: rgba(0, 0, 0, 0.60);
-        --text-disabled: rgba(0, 0, 0, 0.38);
-        --divider-color: rgba(0, 0, 0, 0.12);
-        --background-color: #ffffff;
-        --surface-color: #fafafa;
+
 
         /* Fieldset settings */
         --fieldset-border-radius: 4px;
@@ -83,7 +91,7 @@
         max-width: var(--max-width);
         box-sizing: var(--box-sizing);
         font-family: var(--font-family);
-        /* color: var(--text-primary); */
+        color: var(--text-primary);
 
         border-radius: var(--fieldset-border-radius);
 
@@ -96,7 +104,7 @@
             border: none;
             
             background: transparent;
-            /* color: var(--text-primary); */
+            color: var(--text-primary);
             font-size: 1rem;
             font-family: var(--font-family);
             transition: border-color var(--transition-duration) var(--transition-timing),
@@ -104,7 +112,7 @@
         }
 
         input::placeholder {
-            /* color: var(--text-secondary); */
+            color: var(--text-secondary);
         }
 
         label {
@@ -211,7 +219,8 @@
                 font-weight var(--transition-duration) var(--transition-timing),
                 color var(--transition-duration) var(--transition-timing)
             ;
-            /* color: var(--text-secondary); */
+            color: var(--text-secondary);
+            
         }
     }
     
