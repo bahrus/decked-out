@@ -11,100 +11,165 @@
 
     .decked-out-wrapper {
         display: inline-block;
-        /* Color Variables */
-        --hover-highlight-color: rgb(144, 202, 249); /* bright blue */
-        --input-border-color: #dddddd;
-        --input-background: #eeeeee;
-        --input-background-hover: #dddddd;
-        --input-background-odd: #ffffff;
-        --input-background-hover-focus: plum;
-        --input-icon-color: #999999;
-        --input-height: 1.4374em;
+        
+        /* Material Design Color Palette */
+        --primary-color: #1976d2; /* Material Blue */
+        --primary-light: #42a5f5;
+        --primary-dark: #1565c0;
+        --accent-color: #f50057; /* Material Pink */
+        --error-color: #f44336;
+        --success-color: #4caf50;
+        --warning-color: #ff9800;
+        
+        /* Neutral Colors */
+        --text-primary: rgba(0, 0, 0, 0.87);
+        --text-secondary: rgba(0, 0, 0, 0.60);
+        --text-disabled: rgba(0, 0, 0, 0.38);
+        --divider-color: rgba(0, 0, 0, 0.12);
+        --background-color: #ffffff;
+        --surface-color: #fafafa;
+        
+        /* Component-specific Colors */
+        --input-border-color: var(--divider-color);
+        --input-background: var(--background-color);
+        --input-background-hover: var(--surface-color);
+        --input-background-focus: var(--primary-light);
+        --input-underline-color: var(--input-border-color);
+        --input-underline-color-focus: var(--primary-color);
         
         /* Sizing Variables */
-        --outer-width: 400px;
-        --gap-after-label: 3px;
-        --legend-padding: 2px;
-        
+        --outer-width: 100%;
+        --max-width: 480px;
+        --gap-after-label: 8px;
+        --legend-padding: 0 4px;
         --max-width-label: 200px;
+        --input-height: 56px;
+        --input-padding: 0 12px;
+        --label-font-size: 1rem;
+        --label-font-size-focused: 0.75rem;
         
         /* Transition Variables */
-        --transition-interval: 0.5s;
-        --select-transition: 0.4s;
-        --translate-length: 20px;
+        --transition-duration: 0.2s;
+        --transition-timing: cubic-bezier(0.4, 0, 0.2, 1); /* Material easing */
+        --translate-length: 8px;
 
-        
-        /* Typography Variables */
+        /* Typography Variables - Material Design */
         --box-sizing: border-box;
-        --font-family: "Roboto", "Helvetica", "Arial", "sans-serif";
+        --font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+        --font-weight-regular: 400;
+        --font-weight-medium: 500;
         
         /* Layout Variables */
         --input-flex: 1;
 
         width: var(--outer-width);
+        max-width: var(--max-width);
         box-sizing: var(--box-sizing);
         font-family: var(--font-family);
+        color: var(--text-primary);
 
         input {
             flex: var(--input-flex);
-            min-width: 0; /* allows flex item to shrink below content size */
+            min-width: 0;
             padding: var(--input-padding);
-            border: var(--input-border-width) solid var(--select-border-color); 
-            background: var(--input-background);
-            transition: border-color var(--input-transition);
             height: var(--input-height);
+            border: none;
+            border-bottom: 2px solid var(--input-underline-color);
+            background: transparent;
+            color: var(--text-primary);
+            font-size: 1rem;
+            font-family: var(--font-family);
+            transition: border-color var(--transition-duration) var(--transition-timing),
+                        background-color var(--transition-duration) var(--transition-timing);
+        }
+
+        input::placeholder {
+            color: var(--text-secondary);
         }
 
         label {
             display: flex;
             align-items: center;
             width: 100%;
-            
-            span {
-                margin-right: var(--gap-after-label); 
-            }
+            position: relative;
+        }
+        
+        span {
+            margin-right: var(--gap-after-label);
+            font-size: var(--label-font-size);
+            font-weight: var(--font-weight-regular);
+            transition: 
+                font-size var(--transition-duration) var(--transition-timing),
+                transform var(--transition-duration) var(--transition-timing),
+                color var(--transition-duration) var(--transition-timing)
+            ;
         }
     }
-    .decked-out-wrapper:has(input:focus){
+
+    .decked-out-wrapper:has(input:focus) {
         legend {
             opacity: 1;
             transform: translateY(0);
             width: auto;
             padding-inline: var(--legend-padding);
-            color: var(--hover-highlight-color);
+            color: var(--primary-color);
+            font-size: var(--label-font-size-focused);
+            font-weight: var(--font-weight-medium);
         }
-        label>span {
+
+        label > span {
             opacity: 0;
-            transform: translateY(calc(-1 * var(--translate-length))); /* move up and fade out */
+            transform: translateY(calc(-1 * var(--translate-length)));
             max-width: 0px;
+            visibility: hidden;
         }
+
         input {
-            border: none;
+            border-bottom-color: var(--input-underline-color-focus);
+            background-color: var(--input-background-focus);
+            background-color: rgba(25, 118, 210, 0.04);
         }
     }
-    .decked-out-wrapper:hover {
-        border-color:  var(--hover-highlight-color);
+
+    .decked-out-wrapper:hover:not(:has(input:focus)) {
+        input {
+            background-color: var(--input-background-hover);
+            background-color: rgba(0, 0, 0, 0.04);
+        }
     }
+
     .decked-out-wrapper {
         legend {
             opacity: 0;
-            transform: translateY(var(--translate-length)); /* slightly lower */
-            transition: opacity var(--transition-interval) ease, transform var(--transition-interval) ease;
+            transform: translateY(var(--translate-length));
+            transition: 
+                opacity var(--transition-duration) var(--transition-timing),
+                transform var(--transition-duration) var(--transition-timing),
+                color var(--transition-duration) var(--transition-timing),
+                font-size var(--transition-duration) var(--transition-timing),
+                font-weight var(--transition-duration) var(--transition-timing)
+            ;
             width: 0px;
             padding-inline: 0px;
+            font-size: var(--label-font-size);
+            font-weight: var(--font-weight-regular);
         }
-        label>span {
+
+        label > span {
             opacity: 1;
             visibility: visible;
-            display:inline-block;
+            display: inline-block;
             max-width: var(--max-width-label);
             transition: 
-                opacity var(--transition-interval) ease, 
-                transform var(--transition-interval) ease, 
-                visibility 0s linear var(--transition-interval),
-                max-width var(--transition-interval) ease
+                opacity var(--transition-duration) var(--transition-timing),
+                transform var(--transition-duration) var(--transition-timing),
+                visibility 0s linear var(--transition-duration),
+                max-width var(--transition-duration) var(--transition-timing),
+                font-size var(--transition-duration) var(--transition-timing),
+                font-weight var(--transition-duration) var(--transition-timing),
+                color var(--transition-duration) var(--transition-timing)
             ;
-                
+            color: var(--text-secondary);
         }
     }
     
