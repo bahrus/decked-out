@@ -108,15 +108,30 @@
         }
     }
 
+    .decked-out-wrapper:has(input:focus){
+        legend {
+            color: var(--primary-color);
+        }
+
+    }
+
+    fieldset.decked-out-wrapper:has(input:focus){
+        border-color: var(--primary-color);
+    }
+
     .decked-out-wrapper:has(input:focus, input:not(:placeholder-shown), input[value]) {
         legend {
             opacity: 1;
             transform: translateY(0);
             width: auto;
             padding-inline: var(--legend-padding);
-            color: var(--primary-color);
+            
             font-size: var(--label-font-size-focused);
             font-weight: var(--font-weight-medium);
+        }
+
+        fieldset {
+            border-color: var(--primary-color);
         }
 
         label {
