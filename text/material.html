@@ -13,6 +13,12 @@
         display: inline-block;
         /* Color Variables */
         --hover-highlight-color: #00bfff; /* bright blue */
+        --input-border-color: #dddddd;
+        --input-background: #eeeeee;
+        --input-background-hover: #dddddd;
+        --input-background-odd: #ffffff;
+        --input-background-hover-focus: plum;
+        --input-icon-color: #999999;
         
         /* Sizing Variables */
         --outer-width: 400px;
@@ -31,19 +37,28 @@
         --box-sizing: border-box;
         --font-family: "Roboto", "Helvetica", "Arial", "sans-serif";
         
+        /* Layout Variables */
+        --input-flex: 1;
 
         width: var(--outer-width);
         box-sizing: var(--box-sizing);
         font-family: var(--font-family);
 
-
+        input {
+            flex: var(--input-flex);
+            min-width: 0; /* allows flex item to shrink below content size */
+            padding: var(--input-padding);
+            border: var(--input-border-width) solid var(--select-border-color); 
+            background: var(--input-background);
+            transition: border-color var(--input-transition);
+        }
 
         label {
             display: flex;
             align-items: center;
             width: 100%;
             
-            & span {
+            span {
                 margin-right: var(--gap-after-label); 
             }
         }
