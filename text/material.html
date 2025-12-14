@@ -9,6 +9,18 @@
 </fieldset>
 <style>
 
+    /* Dark mode styles */
+    @media (prefers-color-scheme: dark) {
+        .decked-out-wrapper {
+            --text-primary: rgba(255, 255, 255, 0.87);
+            --text-secondary: rgba(255, 255, 255, 0.60);
+            --text-disabled: rgba(255, 255, 255, 0.38);
+            --divider-color: rgba(255, 255, 255, 0.12);
+            --background-color: #121212;
+            --surface-color: #1e1e1e;
+        }
+
+    }
     .decked-out-wrapper {
         display: inline-block;
         
@@ -20,6 +32,8 @@
         --error-color: #f44336;
         --success-color: #4caf50;
         --warning-color: #ff9800;
+
+
         
         /* Neutral Colors */
         --text-primary: rgba(0, 0, 0, 0.87);
@@ -28,6 +42,9 @@
         --divider-color: rgba(0, 0, 0, 0.12);
         --background-color: #ffffff;
         --surface-color: #fafafa;
+
+        /* Fieldset settings */
+        --fieldset-border-radius: 4px;
         
         /* Component-specific Colors */
         --input-border-color: var(--divider-color);
@@ -66,7 +83,10 @@
         max-width: var(--max-width);
         box-sizing: var(--box-sizing);
         font-family: var(--font-family);
-        color: var(--text-primary);
+        /* color: var(--text-primary); */
+
+        border-radius: var(--fieldset-border-radius);
+
 
         input {
             flex: var(--input-flex);
@@ -76,7 +96,7 @@
             border: none;
             
             background: transparent;
-            color: var(--text-primary);
+            /* color: var(--text-primary); */
             font-size: 1rem;
             font-family: var(--font-family);
             transition: border-color var(--transition-duration) var(--transition-timing),
@@ -84,7 +104,7 @@
         }
 
         input::placeholder {
-            color: var(--text-secondary);
+            /* color: var(--text-secondary); */
         }
 
         label {
@@ -117,6 +137,8 @@
 
     fieldset.decked-out-wrapper:has(input:focus){
         border-color: var(--primary-color);
+        
+
     }
 
     .decked-out-wrapper:has(input:focus, input:not(:placeholder-shown), input[value]) {
@@ -130,9 +152,6 @@
             font-weight: var(--font-weight-medium);
         }
 
-        fieldset {
-            border-color: var(--primary-color);
-        }
 
         label {
             padding: none;
@@ -192,7 +211,7 @@
                 font-weight var(--transition-duration) var(--transition-timing),
                 color var(--transition-duration) var(--transition-timing)
             ;
-            color: var(--text-secondary);
+            /* color: var(--text-secondary); */
         }
     }
     

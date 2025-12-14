@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <!-- #include virtual="/imports.html" -->
-    <script type=importmap >
+    <script type=importmap>
     {
         "imports": {
             "decked-out/": "../../"
@@ -16,13 +17,25 @@
         import 'be-decked-with/😶‍🌫️.js';
         import 'be-valued/💍.js';
     </script>
+    <style>
+        /* Default light theme */
+        body {
+            background-color: white;
+            color: black;
+        }
+
+        /* Dark mode styles */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #121212;
+                color: white;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    <input id=select
-        data-label=Country
-        😶‍🌫️-src="decked-out/text/material.html"
-        💍
-        placeholder="Select a country"
-    >
+    <input id=select data-label=Country 😶‍🌫️-src="decked-out/text/material.html" 💍 placeholder="Select a country">
 </body>
+
 </html>
