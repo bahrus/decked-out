@@ -12,13 +12,14 @@
     .decked-out-wrapper {
         display: inline-block;
         /* Color Variables */
-        --hover-highlight-color: #00bfff; /* bright blue */
+        --hover-highlight-color: rgb(144, 202, 249); /* bright blue */
         --input-border-color: #dddddd;
         --input-background: #eeeeee;
         --input-background-hover: #dddddd;
         --input-background-odd: #ffffff;
         --input-background-hover-focus: plum;
         --input-icon-color: #999999;
+        --input-height: 1.4374em;
         
         /* Sizing Variables */
         --outer-width: 400px;
@@ -51,6 +52,7 @@
             border: var(--input-border-width) solid var(--select-border-color); 
             background: var(--input-background);
             transition: border-color var(--input-transition);
+            height: var(--input-height);
         }
 
         label {
@@ -69,6 +71,7 @@
             transform: translateY(0);
             width: auto;
             padding-inline: var(--legend-padding);
+            color: var(--hover-highlight-color);
         }
         label>span {
             opacity: 0;
