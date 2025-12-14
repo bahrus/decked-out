@@ -1,0 +1,90 @@
+<fieldset part=decked-out-fieldset class=decked-out-wrapper part=decked-out-wrapper>
+    <legend part=decked-out-legend aria-label={{dataset.label}}>{{dataset.label}}</legend>
+    <label part=decked-out-label>
+        <span part=decked-out-label-span>{{dataset.label}}</span>
+        <slot>
+            <select></select>
+        </slot>
+    </label>
+</fieldset>
+<style>
+
+    .decked-out-wrapper {
+        display: inline-block;
+        /* Color Variables */
+        --hover-highlight-color: #00bfff; /* bright blue */
+        
+        /* Sizing Variables */
+        --outer-width: 400px;
+        --gap-after-label: 3px;
+        --legend-padding: 2px;
+        
+        --max-width-label: 200px;
+        
+        /* Transition Variables */
+        --transition-interval: 0.5s;
+        --select-transition: 0.4s;
+        --translate-length: 20px;
+
+        
+        /* Typography Variables */
+        --box-sizing: border-box;
+        --font-family: "Roboto", "Helvetica", "Arial", "sans-serif";
+        
+
+        width: var(--outer-width);
+        box-sizing: var(--box-sizing);
+        font-family: var(--font-family);
+
+
+
+        label {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            
+            & span {
+                margin-right: var(--gap-after-label); 
+            }
+        }
+    }
+    .decked-out-wrapper:has(select:focus){
+        & legend {
+            opacity: 1;
+            transform: translateY(0);
+            width: auto;
+            padding-inline: var(--legend-padding);
+        }
+        & label>span {
+            opacity: 0;
+            transform: translateY(calc(-1 * var(--translate-length))); /* move up and fade out */
+            max-width: 0px;
+        }
+    }
+    .decked-out-wrapper:hover {
+        border-color:  var(--hover-highlight-color);
+    }
+    .decked-out-wrapper {
+        legend {
+            opacity: 0;
+            transform: translateY(var(--translate-length)); /* slightly lower */
+            transition: opacity var(--transition-interval) ease, transform var(--transition-interval) ease;
+            width: 0px;
+            padding-inline: 0px;
+        }
+        label>span {
+            opacity: 1;
+            visibility: visible;
+            display:inline-block;
+            max-width: var(--max-width-label);
+            transition: 
+                opacity var(--transition-interval) ease, 
+                transform var(--transition-interval) ease, 
+                visibility 0s linear var(--transition-interval),
+                max-width var(--transition-interval) ease
+            ;
+                
+        }
+    }
+    
+</style>
