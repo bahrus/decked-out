@@ -1,0 +1,233 @@
+<fieldset part=decked-out-fieldset class=decked-out-wrapper part=decked-out-wrapper>
+    <legend part=decked-out-legend aria-label={{dataset.label}}>{{dataset.label}}</legend>
+    <label part=decked-out-label>
+        <span part=decked-out-label-span>{{dataset.label}}</span>
+        <slot>
+            <input>
+        </slot>
+    </label>
+</fieldset>
+<style>
+
+    /* Dark mode styles */
+    @media (prefers-color-scheme: dark) {
+        .decked-out-wrapper {
+            --text-primary: rgba(255, 255, 255, 0.87);
+            --text-secondary: rgba(255, 255, 255, 0.60);
+            --text-disabled: rgba(255, 255, 255, 0.38);
+            --divider-color: rgba(255, 255, 255, 0.12);
+            --background-color: #121212;
+            --surface-color: #1e1e1e;
+
+            border-color: rgb(255, 255, 255, 0.23);
+            
+        }
+        
+
+    }
+
+    /* Light mode styles and common styles */
+    @media (prefers-color-scheme: light) {
+        .decked-out-wrapper {
+            /* Neutral Colors */
+            --text-primary: rgba(0, 0, 0, 0.87);
+            --text-secondary: rgba(0, 0, 0, 0.60);
+            --text-disabled: rgba(0, 0, 0, 0.38);
+            --divider-color: rgba(0, 0, 0, 0.12);
+            --background-color: #ffffff;
+            --surface-color: #fafafa;
+        }
+    }
+    .decked-out-wrapper {
+        display: inline-block;
+        
+        /* Material Design Color Palette */
+        --primary-color: #1976d2; /* Material Blue */
+        --primary-light: #42a5f5;
+        --primary-dark: #1565c0;
+        --accent-color: #f50057; /* Material Pink */
+        --error-color: #f44336;
+        --success-color: #4caf50;
+        --warning-color: #ff9800;
+
+
+        
+
+
+        /* Fieldset settings */
+        --fieldset-border-radius: 4px;
+        
+        /* Component-specific Colors */
+        --input-border-color: var(--divider-color);
+        --input-background: var(--background-color);
+        --input-background-hover: var(--surface-color);
+        --input-background-focus: var(--primary-light);
+        --input-underline-color: var(--input-border-color);
+        --input-underline-color-focus: var(--primary-color);
+        
+        /* Sizing Variables */
+        --outer-width: 100%;
+        --max-width: 480px;
+        --gap-after-label: 8px;
+        --legend-padding: 0 4px;
+        --max-width-label: 200px;
+        --input-height: 56px;
+        --input-padding: 0 12px;
+        --label-font-size: 1rem;
+        --label-font-size-focused: 0.75rem;
+        
+        /* Transition Variables */
+        --transition-duration: 0.2s;
+        --transition-timing: cubic-bezier(0.4, 0, 0.2, 1); /* Material easing */
+        --translate-length: 8px;
+
+        /* Typography Variables - Material Design */
+        --box-sizing: border-box;
+        --font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+        --font-weight-regular: 400;
+        --font-weight-medium: 500;
+        
+        /* Layout Variables */
+        --input-flex: 1;
+
+        width: var(--outer-width);
+        max-width: var(--max-width);
+        box-sizing: var(--box-sizing);
+        font-family: var(--font-family);
+        color: var(--text-primary);
+
+        border-radius: var(--fieldset-border-radius);
+        background-color: var(--background-color);
+        border-width: 0.5px;
+        border-style: solid;
+        
+
+        input {
+            flex: var(--input-flex);
+            min-width: 0;
+            padding: var(--input-padding);
+            height: var(--input-height);
+            border: none;
+            outline: none;
+            background: transparent;
+            color: var(--text-primary);
+            font-size: 1rem;
+            font-family: var(--font-family);
+            transition: border-color var(--transition-duration) var(--transition-timing),
+                        background-color var(--transition-duration) var(--transition-timing);
+        }
+
+        input::placeholder {
+            color: var(--text-secondary);
+        }
+
+        label {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            position: relative;
+            border-bottom: 2px solid var(--input-underline-color);
+            transition: border-color var(--transition-duration) var(--transition-timing);
+        }
+        
+        span {
+            margin-right: var(--gap-after-label);
+            font-size: var(--label-font-size);
+            font-weight: var(--font-weight-regular);
+            transition: 
+                font-size var(--transition-duration) var(--transition-timing),
+                transform var(--transition-duration) var(--transition-timing),
+                color var(--transition-duration) var(--transition-timing)
+            ;
+        }
+    }
+
+    .decked-out-wrapper:has(input:focus){
+        legend {
+            color: var(--primary-color);
+        }
+
+    }
+
+    fieldset.decked-out-wrapper:has(input:focus){
+        border-color: var(--primary-color);
+        
+
+    }
+
+    .decked-out-wrapper:has(input:focus, input:not(:placeholder-shown), input[value]) {
+        legend {
+            opacity: 1;
+            transform: translateY(0);
+            width: auto;
+            padding-inline: var(--legend-padding);
+            
+            font-size: var(--label-font-size-focused);
+            font-weight: var(--font-weight-medium);
+        }
+
+
+        label {
+            padding: none;
+        }
+
+        label > span {
+            opacity: 0;
+            transform: translateY(calc(-1 * var(--translate-length)));
+            max-width: 0px;
+            visibility: hidden;
+            margin: 0;
+        }
+
+        input {
+            border-bottom-color: var(--input-underline-color-focus);
+            background-color: var(--input-background-focus);
+            background-color: rgba(25, 118, 210, 0.04);
+            /* border-bottom: 2px solid var(--input-underline-color); */
+        }
+    }
+
+    .decked-out-wrapper:hover:not(:has(input:focus)) {
+        input {
+            background-color: var(--input-background-hover);
+            background-color: rgba(0, 0, 0, 0.04);
+        }
+    }
+
+    .decked-out-wrapper {
+        legend {
+            opacity: 0;
+            transform: translateY(var(--translate-length));
+            transition: 
+                opacity var(--transition-duration) var(--transition-timing),
+                transform var(--transition-duration) var(--transition-timing),
+                color var(--transition-duration) var(--transition-timing),
+                font-size var(--transition-duration) var(--transition-timing),
+                font-weight var(--transition-duration) var(--transition-timing)
+            ;
+            width: 0px;
+            padding-inline: 0px;
+            font-size: var(--label-font-size);
+            font-weight: var(--font-weight-regular);
+        }
+
+        label > span {
+            opacity: 1;
+            visibility: visible;
+            display: inline-block;
+            max-width: var(--max-width-label);
+            transition: 
+                opacity var(--transition-duration) var(--transition-timing),
+                transform var(--transition-duration) var(--transition-timing),
+                visibility 0s linear var(--transition-duration),
+                max-width var(--transition-duration) var(--transition-timing),
+                font-size var(--transition-duration) var(--transition-timing),
+                font-weight var(--transition-duration) var(--transition-timing),
+                color var(--transition-duration) var(--transition-timing)
+            ;
+            color: var(--text-secondary);
+            
+        }
+    }
+    
+</style>
